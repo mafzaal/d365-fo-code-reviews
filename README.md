@@ -25,12 +25,14 @@ Before using this workspace, ensure you have:
 - **Python 3.13+** for running the Azure DevOps tools
 - **uvx** package manager for Python tools
 
+![Azure DevOps MCP Tools](/assets/azure-devops-mcp-tools.png)
+
 ## 🛠️ Setup
 
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
+git https://github.com/mafzaal/d365-fo-code-reviews
 cd d365-fo-code-reviews
 ```
 
