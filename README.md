@@ -133,7 +133,7 @@ To get started with your own copy of the D365 F&O Code Review Workspace:
     ```
 6. **Configure upstream**: Add the original repository as upstream for future updates:
     ```bash
-    git remote add upstream https://github.com/ORIGINAL_OWNER/d365-fo-code-reviews.git
+    git remote add upstream https://github.com/mafzaal/d365-fo-code-reviews.git
     ```
 7. **Verify setup**: Check your remote repositories:
     ```bash
