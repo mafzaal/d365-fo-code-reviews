@@ -60,21 +60,129 @@ The workspace is pre-configured with Model Context Protocol (MCP) settings. Ensu
 
 ## 🔍 Usage
 
-### Conducting Code Reviews
 
-The workspace provides specialized AI assistance for D365 F&O code reviews. Simply:
+### Getting an Azure DevOps Personal Access Token (PAT)
 
-1. Open any X++ file or AOT object
-2. Use GitHub Copilot to analyze code with D365 F&O specific context
-3. Generate comprehensive review reports following the structured guidelines
+Before using this workspace, you'll need to create a Personal Access Token to authenticate with Azure DevOps:
+
+#### Step-by-Step Guide
+
+1. **Navigate to Azure DevOps**
+    - Go to [dev.azure.com](https://dev.azure.com)
+    - Sign in with your Microsoft account or organizational account
+
+2. **Access User Settings**
+    - Click on your profile picture in the top-right corner
+    - Select **Personal access tokens** from the dropdown menu
+
+3. **Create New Token**
+    - Click **+ New Token**
+    - Provide a descriptive name (e.g., "D365 F&O Code Review Workspace")
+    - Set expiration period (recommended: 90 days or as per your organization's policy)
+
+4. **Configure Token Permissions**
+    Select the following scopes for full workspace functionality:
+    - **Build**: Read & execute
+    - **Code**: Read
+    - **Project and Team**: Read
+    - **Release**: Read
+    - **Work Items**: Read
+
+    > **Note**: Use minimal required permissions based on your review needs. For read-only operations, avoid granting write permissions.
+
+5. **Generate and Copy Token**
+    - Click **Create**
+    - **Important**: Copy the token immediately and store it securely
+    - You won't be able to see it again after leaving this page
+
+6. **Store Token Securely**
+    - Add the token to your `.env` file as `DEVOPS_PAT=your_token_here`
+    - Never commit this token to version control
+    - Consider using a password manager for secure storage
+
+#### Security Best Practices
+
+- **Rotation**: Rotate tokens every 90 days or as per your organization's policy
+- **Minimal Scope**: Only grant permissions necessary for your review tasks
+- **Monitoring**: Regularly review token usage in Azure DevOps settings
+- **Revocation**: Immediately revoke tokens if compromised or no longer needed
+
+#### Troubleshooting
+
+If you encounter authentication issues:
+- Verify the token hasn't expired
+- Check that your organization allows personal access tokens
+- Ensure the token has the required scopes for your operations
+- Contact your Azure DevOps administrator if organizational policies restrict PAT creation
+
+
+### Fork this repository
+
+To get started with your own copy of the D365 F&O Code Review Workspace:
+
+1. **Navigate to the repository**: Go to the GitHub repository page for this workspace
+2. **Click Fork**: Use the "Fork" button in the top-right corner of the repository
+3. **Choose destination**: Select your GitHub account or organization as the destination
+4. **Make repository private**: During the fork process, ensure you check the option to make the repository private to protect your Azure DevOps configuration and any sensitive project information
+5. **Clone your fork**: Clone your forked repository to your local machine:
+    ```bash
+    git clone https://github.com/YOUR_USERNAME/d365-fo-code-reviews.git
+    cd d365-fo-code-reviews
+    ```
+6. **Configure upstream**: Add the original repository as upstream for future updates:
+    ```bash
+    git remote add upstream https://github.com/ORIGINAL_OWNER/d365-fo-code-reviews.git
+    ```
+7. **Verify setup**: Check your remote repositories:
+    ```bash
+    git remote -v
+    ```
+
+8. Configure Environment Variables
+
+Copy the example environment file and configure your Azure DevOps settings:
+
+```bash
+cp .env.example .env
+```
+
+Edit the `.env` file with your Azure DevOps configuration:
+
+```bash
+DEVOPS_ORGANIZATION=your_organization
+DEVOPS_PROJECT=your_project
+DEVOPS_PAT=your_personal_access_token
+```
+
+> **Important**: Make sure to keep your forked repository private to protect your Azure DevOps configuration, personal access tokens, and any organization-specific code review processes.
+
+This ensures you have your own private copy to customize while maintaining the ability to pull updates from the original repository.
+
+
+### Using GitHub Copilot in Agent Mode
+
+This workspace is designed to work with GitHub Copilot in agent mode. Use natural language prompts to interact with your Azure DevOps environment and conduct code reviews. Here are some example prompts you can use:
+
+#### Azure DevOps Operations
+- **"Review changeset 17"** - Analyze a specific changeset for code quality, patterns, and compliance
+- **"Compare changeset 18 and 19"** - Compare two changesets to understand differences and impact
+- **"Check build status"** - Get an overview of recent build statuses and pipeline health
+- **"Explain failed build tasks"** - Analyze failed builds and identify root causes
+
+#### Code Review Prompts
+- **"Analyze this X++ class for performance issues"** - Review code for performance anti-patterns
+- **"Check security implementation in this form"** - Validate security patterns and role-based access
+- **"Review data entity design"** - Examine data entities for best practices and OData compliance
+- **"Validate extension patterns"** - Ensure proper extension usage over overlayering
 
 ### Azure DevOps Integration
 
-Access Azure DevOps data directly from VS Code:
+Access Azure DevOps data directly from VS Code using Copilot prompts:
 
 - **Build Analysis**: Review build logs and identify failures
 - **Changeset Review**: Analyze code changes and their impact
 - **Pipeline Monitoring**: Track build pipelines and their status
+- **Historical Analysis**: Compare changes across multiple changesets
 
 ### Architecture Review Process
 
@@ -112,7 +220,7 @@ d365-fo-code-reviews/
 
 ### Model Context Protocol (MCP)
 
-The workspace uses MCP to integrate Azure DevOps tools. Configuration is in `.vscode/mcp.json`:
+The workspace uses MCP to integrate Azure DevOps tools. The Azure DevOps MCP server is provided by [azuredevops-tools](https://github.com/mafzaal/azuredevops-tools). Configuration is in `.vscode/mcp.json`:
 
 ```json
 {
