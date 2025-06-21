@@ -1,0 +1,15 @@
+{
+    "servers": {
+        "azuredevops-tools": {
+            "type": "stdio",
+            "command": "uvx",
+            "args": [
+                "--directory",
+                "${workspaceFolder}",
+                "azuredevops-tools"
+                
+            ],
+            "envFile": "${workspaceFolder}/.env",
+        }
+    }
+}
