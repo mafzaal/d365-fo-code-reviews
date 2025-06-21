@@ -1,4 +1,4 @@
-# D365 F&O Code Review Workspace
+# AI-Powered D365 F&O Code Review Workspace
 
 A comprehensive workspace for conducting Microsoft Dynamics 365 Finance & Operations (D365 F&O) architecture reviews and code analysis using Azure DevOps integration and AI-powered code review capabilities.
 
