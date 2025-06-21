@@ -160,6 +160,36 @@ DEVOPS_PAT=your_personal_access_token
 
 This ensures you have your own private copy to customize while maintaining the ability to pull updates from the original repository.
 
+### Install UV
+
+`uv` is a fast Python package installer and resolver. While not strictly required, it provides better performance and dependency management for the Azure DevOps tools used in this workspace.
+
+**WSL/Linux:**
+```bash
+# Install UV
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Install Python 3.13
+uv python install 3.13
+```
+
+**Windows:**
+```powershell
+# Install UV
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+# Install Python 3.13
+uv python install 3.13
+```
+
+**Alternative: Using pip**
+If you prefer to use standard pip instead of `uv`, the Azure DevOps tools can also be installed directly:
+```bash
+pip install azuredevops-tools
+```
+
+> **Note**: The workspace is configured to use `uvx` for automatic dependency management, but you can modify the MCP configuration in `.vscode/mcp.json` to use `pip` if preferred.
+
 
 ### Using GitHub Copilot in Agent Mode
 
